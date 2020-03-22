@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "7715fe7a-5dba-4367-9e0e-60c4445c1b3f",
+		"name": "qNiversity-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/cadastro-usuario",
+			"item": [
+				{
+					"name": "/api/cadastrar-usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/cadastrar-usuario",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"cadastrar-usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/cadastrar-usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Walicen Rangel\",\n    \"sobrenome\": \"Nunes Dalazuana\",\n    \"senha\": \"abc1234\",\n    \"email\": \"walicen.r@gmail.com\",\n    \"cpf\": \"08864611975\",\n    \"profile\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/cadastrar-usuario",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"cadastrar-usuario"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "/auth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
