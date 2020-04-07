@@ -1,6 +1,6 @@
 package br.com.qniversity.api.security;
 
-import br.com.qniversity.api.models.User;
+import br.com.qniversity.api.models.Usuario;
 import br.com.qniversity.api.models.enums.PerfilEnum;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,7 +19,7 @@ public class JwtUserFactory {
      * @param user
      * @return JwtUser
      */
-    public static JwtUser create(User user) {
+    public static JwtUser create(Usuario user) {
         return new JwtUser(user.getId(), user.getEmail(), user.getPassword(),
                 mapToGrantedAuthorities(user.getProfile()));
     }

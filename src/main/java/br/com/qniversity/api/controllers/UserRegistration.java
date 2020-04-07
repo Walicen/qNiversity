@@ -1,6 +1,6 @@
 package br.com.qniversity.api.controllers;
 
-import br.com.qniversity.api.models.User;
+import br.com.qniversity.api.models.Usuario;
 import br.com.qniversity.api.models.dtos.UserDTO;
 import br.com.qniversity.api.response.Response;
 import br.com.qniversity.api.services.UserService;
@@ -35,23 +35,18 @@ public class UserRegistration {
             return ResponseEntity.badRequest().body(response);
         }
 
-        User user = userDTO.converter();
+        Usuario user = userDTO.converter();
         userService.save(user);
 
         response.setData(userDTO);
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping
-    public ResponseEntity<?> getAllUsers() {
-        List<UserDTO> userDTOS = userService.findAll().stream().map(UserDTO::new).collect(Collectors.toList());
-        return ResponseEntity.ok(userDTOS);
-    }
 
     private void validateData(UserDTO userDTO, BindingResult result) {
 
-        this.userService.findByCpf(userDTO.getCpf())
-                .ifPresent(user -> result.addError(new ObjectError("usuário", "CPF já existente.")));
+//        this.userService.findByCpf(userDTO.getCpf())
+//                .ifPresent(user -> result.addError(new ObjectError("usuário", "CPF já existente.")));
 
         this.userService.findByEmail(userDTO.getEmail())
                 .ifPresent(user -> result.addError(new ObjectError("usuário", "Email já existente.")));

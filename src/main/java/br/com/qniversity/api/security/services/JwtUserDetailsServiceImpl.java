@@ -1,7 +1,7 @@
 package br.com.qniversity.api.security.services;
 
 
-import br.com.qniversity.api.models.User;
+import br.com.qniversity.api.models.Usuario;
 import br.com.qniversity.api.security.JwtUserFactory;
 import br.com.qniversity.api.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<User> user = userService.findByEmail(username);
+		Optional<Usuario> user = userService.findByEmail(username);
 
 		if (user.isPresent()) {
 			return JwtUserFactory.create(user.get());

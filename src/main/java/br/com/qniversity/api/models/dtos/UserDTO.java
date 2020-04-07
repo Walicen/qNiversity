@@ -1,6 +1,6 @@
 package br.com.qniversity.api.models.dtos;
 
-import br.com.qniversity.api.models.User;
+import br.com.qniversity.api.models.Usuario;
 import br.com.qniversity.api.utils.PasswordUtils;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
@@ -21,18 +21,15 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(User user) {
+    public UserDTO(Usuario user) {
         this.id = user.getId();
-        this.nome = user.getFirstName();
-        this.sobrenome = user.getLastName();
         this.senha = user.getPassword();
         this.email = user.getEmail();
-        this.cpf = user.getCpf();
         this.profile = user.getProfile().ordinal();
     }
 
-    public User converter() {
-        return new User(this.id, this.nome, PasswordUtils.gerarBCrypt(this.senha), this.sobrenome,  this.email, this.cpf, this.profile);
+    public Usuario converter() {
+        return new Usuario(this.id, this.email, PasswordUtils.gerarBCrypt(this.senha), this.profile);
     }
 
 
