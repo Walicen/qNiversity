@@ -2,9 +2,6 @@ package br.com.qniversity.api.models.dtos;
 
 import br.com.qniversity.api.models.Aluno;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-
 public class AlunoDTO {
 
     private String nome;
@@ -61,7 +58,7 @@ public class AlunoDTO {
         this.ranking = ranking;
     }
 
-    public Aluno converter(){
+    public Aluno converter() {
         return new Aluno(this.nome, this.sobrenome, this.email, this.telefone, this.ranking);
     }
 

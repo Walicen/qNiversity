@@ -1,6 +1,5 @@
 package br.com.qniversity.api.models;
 
-import br.com.qniversity.api.models.dtos.AlunoDTO;
 import br.com.qniversity.api.models.dtos.ProfessorDTO;
 
 import javax.persistence.*;
@@ -30,10 +29,15 @@ public class Professor {
     public Professor() {
     }
 
-    public Professor(String nome, String sobrenome, Usuario usuario) {
+    public Professor(String nome, String sobrenome, String email, Usuario usuario) {
         this.nome = nome;
         this.sobrenome = sobrenome;
+        this.email = email;
         this.usuario = usuario;
+    }
+
+    public ProfessorDTO converter() {
+        return new ProfessorDTO(this.nome, this.sobrenome, this.email);
     }
 
     public String getNome() {
@@ -52,9 +56,20 @@ public class Professor {
         this.sobrenome = sobrenome;
     }
 
-    public ProfessorDTO converter() {
-        return new ProfessorDTO(this.nome, this.sobrenome, this.email);
+
+    public String getEmail() {
+        return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

@@ -39,6 +39,10 @@ public class ProfessorRegistration {
             return ResponseEntity.badRequest().body(response);
         }
 
+        Professor professor = professorDTO.converter();
+        userService.save(professor.getUsuario());
+        professorService.save(professor);
+
         response.setData(professorDTO);
         return ResponseEntity.ok(response);
     }
@@ -54,6 +58,10 @@ public class ProfessorRegistration {
 
 
     private void validateData(ProfessorDTO professorDTO, BindingResult result) {
+
+        this.userService.findByEmail(professorDTO.getEmail())
+                .ifPresent(user -> result.addError(new ObjectError("Usuário", "Email já existente.")));
+
         this.professorService.findByEmail(professorDTO.getEmail())
                 .ifPresent(user -> result.addError(new ObjectError("Professor", "Email já existente.")));
     }
