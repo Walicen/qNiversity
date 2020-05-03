@@ -1,5 +1,7 @@
 package br.com.qniversity.api.models;
 
+import br.com.qniversity.api.models.dtos.AlunoDTO;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -8,7 +10,7 @@ import javax.validation.constraints.NotNull;
 public class Aluno {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -16,30 +18,41 @@ public class Aluno {
     @NotNull
     private String sobrenome;
 
-    @NotNull
-    @Email
+    @NotNull(message = "Um e-mail deve ser informado!")
+    @Email(message = "Email deve ser válido!")
     private String email;
 
     private String telefone;
 
+
     @ManyToOne()
-    @JoinColumn(name = "turma_id", nullable = false)
+    @JoinColumn(name = "turma_id", nullable = true)
     private Turma turma;
 
     @OneToOne()
     @JoinColumn(columnDefinition = "EMAIL")
     private Usuario usuario;
 
+    private boolean ranking = false;
+
 
     public Aluno() {
     }
 
-    public Turma getTurma() {
-        return turma;
+    public Aluno(String nome, String sobrenome, String email, String telefone, boolean ranking) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.email = email;
+        this.telefone = telefone;
+        this.ranking = ranking;
     }
 
-    public void setTurma(Turma turma) {
-        this.turma = turma;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -74,4 +87,31 @@ public class Aluno {
         this.telefone = telefone;
     }
 
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public boolean isRanking() {
+        return ranking;
+    }
+
+    public void setRanking(boolean ranking) {
+        this.ranking = ranking;
+    }
+
+    public AlunoDTO converter() {
+        return new AlunoDTO(this.nome, this.sobrenome, this.email, this.telefone, this.ranking);
+    }
 }

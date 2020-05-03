@@ -1,5 +1,7 @@
 package br.com.qniversity.api.models;
 
+import br.com.qniversity.api.models.dtos.CursoDTO;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,15 +12,14 @@ import javax.validation.constraints.NotNull;
 public class Curso {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotNull(message = "Nome do curso é obrigatório!")
     private String nome;
 
     private int qtdPeriodos;
-    //    private List<Materia> materias;
-    private int cargaHoraria;
+
 
     public Curso() {
     }
@@ -27,6 +28,14 @@ public class Curso {
         this.nome = nome;
         this.qtdPeriodos = qtdPeriodos;
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -43,6 +52,10 @@ public class Curso {
 
     public void setQtdPeriodos(int qtdPeriodos) {
         this.qtdPeriodos = qtdPeriodos;
+    }
+
+    public CursoDTO converter() {
+        return new CursoDTO(this.nome, this.qtdPeriodos);
     }
 
 

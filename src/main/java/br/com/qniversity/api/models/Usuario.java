@@ -14,7 +14,7 @@ public class Usuario implements Serializable {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -29,8 +29,7 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(Long id, String email, String password, int profile) {
-        this.id = id;
+    public Usuario(String email, String password) {
         this.email = email;
         this.password = password;
         this.profile = PerfilEnum.ROLE_USUARIO;

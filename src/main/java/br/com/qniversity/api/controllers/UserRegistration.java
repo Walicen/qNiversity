@@ -8,12 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/cadastrar-usuario")
@@ -44,9 +45,6 @@ public class UserRegistration {
 
 
     private void validateData(UserDTO userDTO, BindingResult result) {
-
-//        this.userService.findByCpf(userDTO.getCpf())
-//                .ifPresent(user -> result.addError(new ObjectError("usuário", "CPF já existente.")));
 
         this.userService.findByEmail(userDTO.getEmail())
                 .ifPresent(user -> result.addError(new ObjectError("usuário", "Email já existente.")));

@@ -6,28 +6,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.sql.Time;
 import java.time.LocalDateTime;
 
 @Entity
 public class Turno {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
     private String descricao;
 
     @NotNull
-    private LocalDateTime inicio;
+    private Time inicio;
 
     @NotNull
-    private LocalDateTime fim;
+    private Time fim;
 
     public Turno() {
     }
 
-    public Turno(String descricao, LocalDateTime inicio, LocalDateTime fim) {
+    public Turno(String descricao, Time inicio, Time fim) {
         this.descricao = descricao;
         this.inicio = inicio;
         this.fim = fim;
@@ -49,19 +50,19 @@ public class Turno {
         this.id = id;
     }
 
-    public LocalDateTime getInicio() {
+    public Time getInicio() {
         return inicio;
     }
 
-    public void setInicio(LocalDateTime inicio) {
+    public void setInicio(Time inicio) {
         this.inicio = inicio;
     }
 
-    public LocalDateTime getFim() {
+    public Time getFim() {
         return fim;
     }
 
-    public void setFim(LocalDateTime fim) {
+    public void setFim(Time fim) {
         this.fim = fim;
     }
 }

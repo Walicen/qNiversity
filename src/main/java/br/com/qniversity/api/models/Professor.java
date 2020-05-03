@@ -1,5 +1,8 @@
 package br.com.qniversity.api.models;
 
+import br.com.qniversity.api.models.dtos.AlunoDTO;
+import br.com.qniversity.api.models.dtos.ProfessorDTO;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -8,7 +11,7 @@ import javax.validation.constraints.NotNull;
 public class Professor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -47,6 +50,10 @@ public class Professor {
 
     public void setSobrenome(String sobrenome) {
         this.sobrenome = sobrenome;
+    }
+
+    public ProfessorDTO converter() {
+        return new ProfessorDTO(this.nome, this.sobrenome, this.email);
     }
 
 

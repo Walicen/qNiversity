@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "/cadastro-usuario",
+			"name": "cadastro-usuario",
 			"item": [
 				{
 					"name": "/api/cadastrar-usuario",
@@ -54,6 +54,28 @@
 					"response": []
 				}
 			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4ef9ef18-b810-4721-89b9-32d78f1f3f25",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "849cac71-1bf8-4906-93db-ca04f60425fc",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
 			"protocolProfileBehavior": {}
 		},
 		{
@@ -64,13 +86,94 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"walicen.r@gmail.com\",\n    \"senha\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{base_url}}/auth",
+							"raw": "{{base_url}}/auth/",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"auth"
+								"auth",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "aluno",
+			"item": [
+				{
+					"name": "/api/aluno",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3YWxpY2VuLnJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNVQVJJTyIsImNyZWF0ZWQiOjE1ODgxOTMxMjc5NTQsImV4cCI6MTU4ODc5NzkyN30.Tp12kwojTvq1K80KOtLjH_TJzYD4FR1HitjHlDg_qL4naSfOn6N5MqklxF0mUq9Ml_zx_yR3wt99ljAkeJioGw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"José\",\n    \"sobrenome\": \"Pereira\",\n    \"email\": \"jose.p@gmail.com\",\n    \"telefone\": \"41987414527\",\n    \"ranking\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/aluno",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"aluno"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/aluno",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3YWxpY2VuLnJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNVQVJJTyIsImNyZWF0ZWQiOjE1ODgxOTMxMjc5NTQsImV4cCI6MTU4ODc5NzkyN30.Tp12kwojTvq1K80KOtLjH_TJzYD4FR1HitjHlDg_qL4naSfOn6N5MqklxF0mUq9Ml_zx_yR3wt99ljAkeJioGw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/aluno",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"aluno"
 							]
 						}
 					},

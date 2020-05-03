@@ -7,7 +7,7 @@ import java.util.List;
 public class Turma {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String codigo;
@@ -16,9 +16,6 @@ public class Turma {
 
     @ManyToOne()
     private Turno turno;
-
-    @ManyToOne()
-    private Periodo periodo;
 
     @ManyToOne()
     private Curso curso;

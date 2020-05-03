@@ -10,11 +10,11 @@ import javax.validation.constraints.NotNull;
 public class Periodo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
-    private String nome;
+    private String descricao;
 
     @NotNull
     private String numero;
