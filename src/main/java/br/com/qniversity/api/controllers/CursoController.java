@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/curso")
+@RequestMapping("/api/cursos")
 public class CursoController {
 
     @Autowired

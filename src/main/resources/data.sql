@@ -13,3 +13,10 @@ insert into usuario (id, email, password, profile) values (1, 'walicen.r@gmail.c
 INSERT INTO aluno (id, email, nome, ranking, sobrenome, telefone, turma_id, usuario_id) VALUES (1, 'jean.s@gmail.com', 'Jean', true, 'Silva', '4199887744', null, null);
 INSERT INTO aluno (id, email, nome, ranking, sobrenome, telefone, turma_id, usuario_id) VALUES (2, 'vanderlei.s@gmail.com', 'Vanderlei', true, 'Silva', '4199887744', null, null);
 INSERT INTO aluno (id, email, nome, ranking, sobrenome, telefone, turma_id, usuario_id) VALUES (3, 'walicen.r@gmail.com', 'Walicen', true, 'Dalazuana', '4199887744', null, null);
+
+INSERT INTO questao (id, descricao, nivel) VALUES (1, 'Qual é a capital do Brasil?', 0);
+
+INSERT INTO resposta (id, correta, descricao, questao_id) VALUES (1, '1', 'Brasilia', 1);
+INSERT INTO resposta (id, correta, descricao, questao_id) VALUES (2, '0', 'Salvador', 1);
+INSERT INTO resposta (id, correta, descricao, questao_id) VALUES (3, '0', 'Manaus', 1);
+INSERT INTO resposta (id, correta, descricao, questao_id) VALUES (4, '0', 'Curitiba', 1);

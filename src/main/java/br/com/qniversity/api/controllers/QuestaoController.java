@@ -1,7 +1,9 @@
 package br.com.qniversity.api.controllers;
 
+import br.com.qniversity.api.models.Questao;
 import br.com.qniversity.api.models.Turma;
 import br.com.qniversity.api.response.Response;
+import br.com.qniversity.api.services.QuestaoService;
 import br.com.qniversity.api.services.TurmaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,19 +14,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/turmas")
-public class TurmaController {
+@RequestMapping("/api/questoes")
+public class QuestaoController {
 
     @Autowired
-    private TurmaService turmaService;
+    private QuestaoService questaoService;
 
     @GetMapping
     public ResponseEntity<?> getAll() {
 
-        Response<List<Turma>> response = new Response<>();
-        final List<Turma> turmas = turmaService.findAll();
+        Response<List<Questao>> response = new Response<>();
+        final List<Questao> questoes = questaoService.findAll();
 
-        response.setData(turmas);
+        response.setData(questoes);
         return ResponseEntity.ok(response);
 
     }

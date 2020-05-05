@@ -58,6 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] PUBLIC_MATCHERS = {
             "/api/cadastrar-usuario/**",
+            "/api/professor/**",
             "/h2-console/**",
             "/login/**",
             "/auth/**",
@@ -78,7 +79,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.headers().cacheControl();
         httpSecurity.cors().and().csrf().disable();
     }
-
 
 
     @Bean
