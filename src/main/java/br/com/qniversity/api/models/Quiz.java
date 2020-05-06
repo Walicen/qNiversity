@@ -53,6 +53,14 @@ public class Quiz {
         this.descricao = descricao;
     }
 
+    public Set<Questao> getQuestoes() {
+        return questoes;
+    }
+
+    public void setQuestoes(Set<Questao> questoes) {
+        this.questoes = questoes;
+    }
+
     public boolean isAtivo() {
         return ativo;
     }

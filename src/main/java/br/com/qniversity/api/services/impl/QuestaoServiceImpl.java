@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class QuestaoServiceImpl implements QuestaoService {
@@ -17,6 +18,11 @@ public class QuestaoServiceImpl implements QuestaoService {
     @Override
     public List<Questao> findAll() {
         return this.questaoRepository.findAll();
+    }
+
+    @Override
+    public Optional<Questao> findById(Long i) {
+        return this.questaoRepository.findById(i);
     }
 
     @Override
