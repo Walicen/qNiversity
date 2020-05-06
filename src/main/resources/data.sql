@@ -16,7 +16,7 @@ INSERT INTO aluno (id, email, nome, ranking, sobrenome, telefone, turma_id, usua
 
 INSERT INTO questao (id, descricao, nivel) VALUES (1, 'Qual é a capital do Brasil?', 0);
 
-INSERT INTO resposta (id, correta, descricao, questao_id) VALUES (1, '1', 'Brasilia', 1);
-INSERT INTO resposta (id, correta, descricao, questao_id) VALUES (2, '0', 'Salvador', 1);
-INSERT INTO resposta (id, correta, descricao, questao_id) VALUES (3, '0', 'Manaus', 1);
-INSERT INTO resposta (id, correta, descricao, questao_id) VALUES (4, '0', 'Curitiba', 1);
+INSERT INTO resposta (id, correta, descricao, questao_id) VALUES (1, true, 'Brasilia', 1);
+INSERT INTO resposta (id, correta, descricao, questao_id) VALUES (2, false, 'Salvador', 1);
+INSERT INTO resposta (id, correta, descricao, questao_id) VALUES (3, false, 'Manaus', 1);
+INSERT INTO resposta (id, correta, descricao, questao_id) VALUES (4, false, 'Curitiba', 1);

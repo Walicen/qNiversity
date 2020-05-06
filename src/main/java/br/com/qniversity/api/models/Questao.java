@@ -1,10 +1,13 @@
 package br.com.qniversity.api.models;
 
+import br.com.qniversity.api.models.dtos.QuestaoDTO;
+import br.com.qniversity.api.models.dtos.RespostaDTO;
 import br.com.qniversity.api.models.enums.Nivel;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class Questao {
@@ -20,8 +23,17 @@ public class Questao {
     @OneToMany(mappedBy = "questao", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Resposta> respostas;
 
-    @ManyToMany(mappedBy = "questoes")
+    @ManyToMany(mappedBy = "questoes", fetch = FetchType.LAZY)
     private Set<Quiz> quizList;
+
+    public Questao() {
+    }
+
+    public Questao(String descricao, Nivel nivel, List<Resposta> respostas) {
+        this.descricao = descricao;
+        this.nivel = nivel;
+        this.respostas = respostas;
+    }
 
     public Long getId() {
         return id;
@@ -61,5 +73,10 @@ public class Questao {
 
     public void setQuizList(Set<Quiz> quizList) {
         this.quizList = quizList;
+    }
+
+    public static QuestaoDTO converter(Questao questao) {
+        final List<RespostaDTO> respostaDTOS = questao.getRespostas().stream().map(Resposta::converter).collect(Collectors.toList());
+        return new QuestaoDTO(questao.getDescricao(), questao.getNivel(), respostaDTOS);
     }
 }

@@ -1,5 +1,6 @@
 package br.com.qniversity.api.models;
 
+import br.com.qniversity.api.models.dtos.RespostaDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -12,13 +13,18 @@ public class Resposta {
     private Long id;
 
     private String descricao;
-    private String correta;
+    private boolean correta;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     private Questao questao;
 
     public Resposta() {
+    }
+
+    public Resposta(String descricao, boolean correta) {
+        this.descricao = descricao;
+        this.correta = correta;
     }
 
     public Long getId() {
@@ -37,11 +43,11 @@ public class Resposta {
         this.descricao = descricao;
     }
 
-    public String getCorreta() {
+    public boolean isCorreta() {
         return correta;
     }
 
-    public void setCorreta(String correta) {
+    public void setCorreta(boolean correta) {
         this.correta = correta;
     }
 
@@ -51,5 +57,9 @@ public class Resposta {
 
     public void setQuestao(Questao questao) {
         this.questao = questao;
+    }
+
+    public static RespostaDTO converter(Resposta resposta) {
+        return new RespostaDTO(resposta.getDescricao(), resposta.isCorreta());
     }
 }

@@ -12,7 +12,7 @@ public class Quiz {
     private String descricao;
     private boolean ativo;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "quiz_questoes",
             joinColumns = @JoinColumn(name = "quiz_id"),
