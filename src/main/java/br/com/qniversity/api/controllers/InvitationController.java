@@ -41,7 +41,8 @@ public class InvitationController {
     }
 
     private void validateData(String cod, Response response) {
-        if (this.turmaService.findByCodigo(cod).isEmpty()) {
+        final Optional<Turma> turma = this.turmaService.findByCodigo(cod);
+        if (!turma.isPresent()) {
             response.setErrors(Arrays.asList(new ObjectError("Código", "não encontrado!")));
         }
     }

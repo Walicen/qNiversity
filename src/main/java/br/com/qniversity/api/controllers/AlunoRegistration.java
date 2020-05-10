@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -70,7 +71,8 @@ public class AlunoRegistration {
 
     private void validateData(AlunoDTO alunoDTO, BindingResult result) {
 
-        if (this.turmaService.findById(alunoDTO.getTurmaId()).isEmpty()) {
+        final Optional<Turma> turma = this.turmaService.findById(alunoDTO.getTurmaId());
+        if (!turma.isPresent()) {
             result.addError(new ObjectError("Turma", "Turma não encontrada."));
         }
 
