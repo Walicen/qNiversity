@@ -2,6 +2,7 @@ package br.com.qniversity.api.models.dtos;
 
 import br.com.qniversity.api.models.Professor;
 import br.com.qniversity.api.models.Usuario;
+import br.com.qniversity.api.utils.PasswordUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
@@ -74,7 +75,7 @@ public class ProfessorDTO {
     }
 
     public Professor converter() {
-        final Usuario usuario = new Usuario(this.email, this.senha);
+        final Usuario usuario = new Usuario(this.email, PasswordUtils.gerarBCrypt(this.senha));
         return new Professor(this.nome, this.sobrenome, this.email, usuario);
     }
 }

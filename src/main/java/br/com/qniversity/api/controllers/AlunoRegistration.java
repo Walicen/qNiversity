@@ -8,6 +8,7 @@ import br.com.qniversity.api.response.Response;
 import br.com.qniversity.api.services.AlunoService;
 import br.com.qniversity.api.services.TurmaService;
 import br.com.qniversity.api.services.UserService;
+import br.com.qniversity.api.utils.PasswordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -51,7 +52,7 @@ public class AlunoRegistration {
         aluno.setTurma(turma);
         alunoService.save(aluno);
 
-        final Usuario usuario = new Usuario(alunoDTO.getEmail(), alunoDTO.getSenha());
+        final Usuario usuario = new Usuario(alunoDTO.getEmail(), PasswordUtils.gerarBCrypt(alunoDTO.getSenha()));
         userService.save(usuario);
 
         response.setData(alunoDTO);
