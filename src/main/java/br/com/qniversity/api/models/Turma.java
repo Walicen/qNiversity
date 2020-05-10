@@ -1,6 +1,9 @@
 package br.com.qniversity.api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -10,6 +13,7 @@ public class Turma {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     private String codigo;
 
     private String nome;
@@ -21,7 +25,15 @@ public class Turma {
     private Curso curso;
 
     @OneToMany(mappedBy = "turma")
-    private List<Aluno> alunos;
+    private List<Aluno> alunos = new ArrayList<>(0);
+
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "turma_quiz",
+            joinColumns = @JoinColumn(name = "turma_id"),
+            inverseJoinColumns = @JoinColumn(name = "quiz_id"))
+    private List<Quiz> quizzes = new ArrayList<>(0);
 
     public Turma() {
     }
@@ -32,6 +44,14 @@ public class Turma {
         this.turno = turno;
         this.curso = curso;
         this.alunos = alunos;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Curso getCurso() {
@@ -74,4 +94,11 @@ public class Turma {
         this.turno = turno;
     }
 
+    public List<Quiz> getQuizzes() {
+        return quizzes;
+    }
+
+    public void setQuizzes(List<Quiz> quizzes) {
+        this.quizzes = quizzes;
+    }
 }

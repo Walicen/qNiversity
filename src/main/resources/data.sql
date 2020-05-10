@@ -8,11 +8,15 @@ INSERT INTO curso (id, nome, qtd_periodos) VALUES (2, 'Sistema da Informação',
 INSERT INTO curso (id, nome, qtd_periodos) VALUES (3, 'Análise e Desenvolvimento de Sistemas', 5);
 INSERT INTO curso (id, nome, qtd_periodos) VALUES (4, 'Engenharia da Computação', 8);
 
+INSERT INTO turma (id, codigo, nome, curso_id, turno_id) VALUES (1, 'ABC123', 'TURMA 1', 1, 3);
+INSERT INTO turma (id, codigo, nome, curso_id, turno_id) VALUES (2, 'ABC321', 'TURMA 2', 2, 3);
+INSERT INTO turma (id, codigo, nome, curso_id, turno_id) VALUES (3, 'ABC000', 'TURMA 3', 3, 3);
+
 insert into usuario (id, email, password, profile) values (1, 'walicen.r@gmail.com', '$2a$10$5ZDoLhEtGKvumT9.aLsOEunpJyUs.Ul9PEU1c.MAueRH7LN54C61.', 1);
 
-INSERT INTO aluno (id, email, nome, ranking, sobrenome, telefone, turma_id, usuario_id) VALUES (1, 'jean.s@gmail.com', 'Jean', true, 'Silva', '4199887744', null, null);
-INSERT INTO aluno (id, email, nome, ranking, sobrenome, telefone, turma_id, usuario_id) VALUES (2, 'vanderlei.s@gmail.com', 'Vanderlei', true, 'Silva', '4199887744', null, null);
-INSERT INTO aluno (id, email, nome, ranking, sobrenome, telefone, turma_id, usuario_id) VALUES (3, 'walicen.r@gmail.com', 'Walicen', true, 'Dalazuana', '4199887744', null, null);
+INSERT INTO aluno (id, email, nome, ranking, sobrenome, telefone, turma_id, usuario_id) VALUES (1, 'jean.s@gmail.com', 'Jean', true, 'Silva', '4199887744', 1, null);
+INSERT INTO aluno (id, email, nome, ranking, sobrenome, telefone, turma_id, usuario_id) VALUES (2, 'vanderlei.s@gmail.com', 'Vanderlei', true, 'Silva', '4199887744', 1, null);
+INSERT INTO aluno (id, email, nome, ranking, sobrenome, telefone, turma_id, usuario_id) VALUES (3, 'walicen.r@gmail.com', 'Walicen', true, 'Dalazuana', '4199887744', 1, null);
 
 INSERT INTO questao (id, descricao, nivel) VALUES (1, 'Qual é a capital do Brasil?', 0);
 
@@ -20,3 +24,9 @@ INSERT INTO resposta (id, correta, descricao, questao_id) VALUES (1, true, 'Bras
 INSERT INTO resposta (id, correta, descricao, questao_id) VALUES (2, false, 'Salvador', 1);
 INSERT INTO resposta (id, correta, descricao, questao_id) VALUES (3, false, 'Manaus', 1);
 INSERT INTO resposta (id, correta, descricao, questao_id) VALUES (4, false, 'Curitiba', 1);
+
+INSERT INTO quiz (id, ativo, descricao, nome) VALUES (1, true, 'QUIZ CRIADO PARA TESTE', 'QUIZ 1');
+
+INSERT INTO quiz_questoes (quiz_id, questao_id) VALUES (1, 1);
+
+INSERT INTO turma_quiz (turma_id, quiz_id) VALUES (1, 1);

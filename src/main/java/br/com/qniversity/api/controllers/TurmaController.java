@@ -5,11 +5,11 @@ import br.com.qniversity.api.response.Response;
 import br.com.qniversity.api.services.TurmaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/turmas")
@@ -17,6 +17,26 @@ public class TurmaController {
 
     @Autowired
     private TurmaService turmaService;
+
+    @GetMapping("/{id}")
+    @ResponseBody
+    public ResponseEntity<?> getTurmaById(@PathVariable Long id, BindingResult result) {
+
+        Response<Turma> response = new Response<>();
+
+        if (result.hasErrors()) {
+            result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
+            return ResponseEntity.badRequest().body(response);
+        }
+
+        Optional<Turma> turma = turmaService.findById(id);
+
+        if (turma.isPresent()) {
+            response.setData(turma.get());
+            return ResponseEntity.ok(response);
+        }
+        return ResponseEntity.notFound().build();
+    }
 
     @GetMapping
     public ResponseEntity<?> getAll() {

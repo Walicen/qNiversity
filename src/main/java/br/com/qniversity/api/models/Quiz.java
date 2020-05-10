@@ -1,6 +1,11 @@
 package br.com.qniversity.api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,7 +22,11 @@ public class Quiz {
             name = "quiz_questoes",
             joinColumns = @JoinColumn(name = "quiz_id"),
             inverseJoinColumns = @JoinColumn(name = "questao_id"))
-    Set<Questao> questoes;
+    Set<Questao> questoes = new HashSet<>(0);
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "quizzes", fetch = FetchType.LAZY)
+    private List<Turma> turmas = new ArrayList<>(0);
 
     public Quiz() {
     }
@@ -67,5 +76,13 @@ public class Quiz {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public List<Turma> getTurmas() {
+        return turmas;
+    }
+
+    public void setTurmas(List<Turma> turmas) {
+        this.turmas = turmas;
     }
 }

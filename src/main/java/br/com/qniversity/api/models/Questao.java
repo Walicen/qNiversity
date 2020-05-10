@@ -3,8 +3,11 @@ package br.com.qniversity.api.models;
 import br.com.qniversity.api.models.dtos.QuestaoDTO;
 import br.com.qniversity.api.models.dtos.RespostaDTO;
 import br.com.qniversity.api.models.enums.Nivel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -20,11 +23,12 @@ public class Questao {
 
     private Nivel nivel;
 
-    @OneToMany(mappedBy = "questao", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Resposta> respostas;
+    @OneToMany(mappedBy = "questao", cascade = {CascadeType.ALL, CascadeType.PERSIST}, orphanRemoval = true)
+    private List<Resposta> respostas = new ArrayList<>(0);
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "questoes", fetch = FetchType.LAZY)
-    private Set<Quiz> quizList;
+    private Set<Quiz> quizList = new HashSet<>(0);
 
     public Questao() {
     }

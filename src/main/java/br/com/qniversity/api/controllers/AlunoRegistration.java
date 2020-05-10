@@ -1,12 +1,12 @@
 package br.com.qniversity.api.controllers;
 
 import br.com.qniversity.api.models.Aluno;
+import br.com.qniversity.api.models.Turma;
 import br.com.qniversity.api.models.Usuario;
 import br.com.qniversity.api.models.dtos.AlunoDTO;
-import br.com.qniversity.api.models.dtos.UserDTO;
-import br.com.qniversity.api.repositories.AlunoRepository;
 import br.com.qniversity.api.response.Response;
 import br.com.qniversity.api.services.AlunoService;
+import br.com.qniversity.api.services.TurmaService;
 import br.com.qniversity.api.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +30,9 @@ public class AlunoRegistration {
     @Autowired
     private AlunoService alunoService;
 
+    @Autowired
+    private TurmaService turmaService;
+
 
     @PostMapping
     public ResponseEntity<?> register(@Valid @RequestBody AlunoDTO alunoDTO, BindingResult result) throws NoSuchAlgorithmException {
@@ -42,8 +45,13 @@ public class AlunoRegistration {
             return ResponseEntity.badRequest().body(response);
         }
 
-        Aluno aluno = alunoDTO.converter();
+        final Aluno aluno = alunoDTO.converter();
+        final Turma turma = this.turmaService.findById(alunoDTO.getTurmaId()).get();
+        aluno.setTurma(turma);
         alunoService.save(aluno);
+
+        final Usuario usuario = new Usuario(alunoDTO.getEmail(), alunoDTO.getSenha());
+        userService.save(usuario);
 
         response.setData(alunoDTO);
         return ResponseEntity.ok(response);
@@ -61,6 +69,10 @@ public class AlunoRegistration {
 
 
     private void validateData(AlunoDTO alunoDTO, BindingResult result) {
+
+        if (this.turmaService.findById(alunoDTO.getTurmaId()).isEmpty()) {
+            result.addError(new ObjectError("Turma", "Turma não encontrada."));
+        }
 
         this.alunoService.findByEmail(alunoDTO.getEmail())
                 .ifPresent(user -> result.addError(new ObjectError("Aluno", "Email já existente.")));

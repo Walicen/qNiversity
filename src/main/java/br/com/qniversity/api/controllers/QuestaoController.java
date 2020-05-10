@@ -1,13 +1,10 @@
 package br.com.qniversity.api.controllers;
 
 import br.com.qniversity.api.models.Questao;
-import br.com.qniversity.api.models.Quiz;
-import br.com.qniversity.api.models.Turma;
 import br.com.qniversity.api.models.dtos.QuestaoDTO;
-import br.com.qniversity.api.models.dtos.QuizDTO;
 import br.com.qniversity.api.response.Response;
 import br.com.qniversity.api.services.QuestaoService;
-import br.com.qniversity.api.services.TurmaService;
+import br.com.qniversity.api.services.RespostaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -24,6 +20,9 @@ public class QuestaoController {
 
     @Autowired
     private QuestaoService questaoService;
+
+    @Autowired
+    private RespostaService respostaService;
 
     @GetMapping
     public ResponseEntity<?> getAll() {
@@ -47,6 +46,9 @@ public class QuestaoController {
 
         final Questao questao = questaoDTO.converter();
         this.questaoService.save(questao);
+
+        questao.getRespostas().stream().forEach((r) -> r.setQuestao(questao));
+        this.respostaService.saveAll(questao.getRespostas());
 
 
         response.setData(questaoDTO);

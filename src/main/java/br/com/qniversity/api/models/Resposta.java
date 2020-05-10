@@ -17,6 +17,7 @@ public class Resposta {
 
     @JsonIgnore
     @ManyToOne()
+    @JoinColumn(name = "questao_id", foreignKey = @ForeignKey(name = "fk_resposta_questao"))
     private Questao questao;
 
     public Resposta() {

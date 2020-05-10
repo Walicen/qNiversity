@@ -26,7 +26,7 @@ public class Aluno {
 
 
     @ManyToOne()
-    @JoinColumn(name = "turma_id", nullable = true)
+    @JoinColumn(name = "turma_id")
     private Turma turma;
 
     @OneToOne()

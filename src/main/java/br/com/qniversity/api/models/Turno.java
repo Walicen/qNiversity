@@ -1,5 +1,7 @@
 package br.com.qniversity.api.models;
 
+import br.com.qniversity.api.models.dtos.TurnoDTO;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -64,5 +66,9 @@ public class Turno {
 
     public void setFim(Time fim) {
         this.fim = fim;
+    }
+
+    public TurnoDTO converter() {
+        return new TurnoDTO(this.id,this.descricao, this.inicio, this.fim);
     }
 }
