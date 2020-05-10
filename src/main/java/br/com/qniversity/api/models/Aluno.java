@@ -1,6 +1,7 @@
 package br.com.qniversity.api.models;
 
 import br.com.qniversity.api.models.dtos.AlunoDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -25,6 +26,7 @@ public class Aluno {
     private String telefone;
 
 
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "turma_id")
     private Turma turma;
