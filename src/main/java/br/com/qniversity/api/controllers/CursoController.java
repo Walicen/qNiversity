@@ -1,9 +1,12 @@
 package br.com.qniversity.api.controllers;
 
 import br.com.qniversity.api.models.Curso;
+import br.com.qniversity.api.models.Turma;
 import br.com.qniversity.api.models.dtos.CursoDTO;
+import br.com.qniversity.api.models.dtos.TurmaDTO;
 import br.com.qniversity.api.response.Response;
 import br.com.qniversity.api.services.CursoService;
+import br.com.qniversity.api.services.TurmaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -20,6 +23,9 @@ public class CursoController {
 
     @Autowired
     private CursoService cursoService;
+
+    @Autowired
+    private TurmaService turmaService;
 
     @PostMapping
     public ResponseEntity<?> register(@Valid @RequestBody CursoDTO cursoDTO, BindingResult result) {
@@ -38,12 +44,24 @@ public class CursoController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/{id}/turmas")
+    public ResponseEntity<?> getTurmasByCurso(@PathVariable("id") Long id) {
+
+        Response<List<TurmaDTO>> response = new Response<>();
+        final List<Turma> turmas = turmaService.findByCurso(id);
+        final List<TurmaDTO> dtos = turmas.stream().map(Turma::converter).collect(Collectors.toList());
+
+        response.setData(dtos);
+        return ResponseEntity.ok(response);
+
+    }
+
     @GetMapping
     public ResponseEntity<?> getAll() {
         Response<List<CursoDTO>> response = new Response<>();
         List<CursoDTO> dtos = cursoService.findAll().stream().map(Curso::converter).collect(Collectors.toList());
 
-        response.setData(dtos);     
+        response.setData(dtos);
         return ResponseEntity.ok(response);
     }
 

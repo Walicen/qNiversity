@@ -7,16 +7,24 @@ import javax.validation.constraints.NotNull;
 
 public class CursoDTO {
 
-
+    private Long id;
     private String nome;
     private int qtdPeriodos;
 
-    public CursoDTO(String nome, int qtdPeriodos) {
+    public CursoDTO(Long id, String nome, int qtdPeriodos) {
+        this.id = id;
         this.nome = nome;
         this.qtdPeriodos = qtdPeriodos;
 
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @NotNull(message = "Nome do curso é obrigatório!")
     public String getNome() {

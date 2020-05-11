@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TurnoServiceImpl implements TurnoService {
@@ -17,6 +18,11 @@ public class TurnoServiceImpl implements TurnoService {
     @Override
     public List<Turno> findAll() {
         return this.turnoRepository.findAll();
+    }
+
+    @Override
+    public Optional<Turno> findById(Long id) {
+        return this.turnoRepository.findById(id);
     }
 
     @Override

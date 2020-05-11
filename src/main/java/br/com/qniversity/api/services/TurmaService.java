@@ -9,9 +9,15 @@ public interface TurmaService {
 
     List<Turma> findAll();
 
-    Optional<Turma> findById(Long id);
+    List<Turma> findByCurso(Long cursoId);
+
+    Optional<Turma> findById(Long turmaId);
 
     Optional<Turma> findByCodigo(String codigo);
 
+    Optional<Turma> findByNome(String nome);
+
     void save(Turma turma);
+
+
 }

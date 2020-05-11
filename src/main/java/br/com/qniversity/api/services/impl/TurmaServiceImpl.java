@@ -21,6 +21,11 @@ public class TurmaServiceImpl implements TurmaService {
     }
 
     @Override
+    public List<Turma> findByCurso(Long cursoId) {
+        return this.turmaRepository.findByCurso_Id(cursoId);
+    }
+
+    @Override
     public Optional<Turma> findById(Long id) {
         return this.turmaRepository.findById(id);
     }
@@ -28,6 +33,11 @@ public class TurmaServiceImpl implements TurmaService {
     @Override
     public Optional<Turma> findByCodigo(String codigo) {
         return this.turmaRepository.findByCodigo(codigo);
+    }
+
+    @Override
+    public Optional<Turma> findByNome(String nome) {
+        return this.turmaRepository.findByNome(nome);
     }
 
     @Override

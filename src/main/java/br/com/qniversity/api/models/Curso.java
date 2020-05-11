@@ -55,7 +55,7 @@ public class Curso {
     }
 
     public CursoDTO converter() {
-        return new CursoDTO(this.nome, this.qtdPeriodos);
+        return new CursoDTO(this.id, this.nome, this.qtdPeriodos);
     }
 
 

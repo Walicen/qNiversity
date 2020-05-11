@@ -3,10 +3,7 @@ package br.com.qniversity.api.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Quiz {
@@ -15,6 +12,13 @@ public class Quiz {
     private Long id;
     private String nome;
     private String descricao;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar inicio;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar fim;
+
     private boolean ativo;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -84,5 +88,21 @@ public class Quiz {
 
     public void setTurmas(List<Turma> turmas) {
         this.turmas = turmas;
+    }
+
+    public Calendar getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(Calendar inicio) {
+        this.inicio = inicio;
+    }
+
+    public Calendar getFim() {
+        return fim;
+    }
+
+    public void setFim(Calendar fim) {
+        this.fim = fim;
     }
 }

@@ -1,6 +1,6 @@
 package br.com.qniversity.api.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import br.com.qniversity.api.models.dtos.TurmaDTO;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,7 +13,6 @@ public class Turma {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
     private String codigo;
 
     private String nome;
@@ -38,12 +37,11 @@ public class Turma {
     public Turma() {
     }
 
-    public Turma(String nome, String codigo, Turno turno, Curso curso, List<Aluno> alunos) {
+    public Turma(String nome, String codigo, Turno turno, Curso curso) {
         this.nome = nome;
         this.codigo = codigo;
         this.turno = turno;
         this.curso = curso;
-        this.alunos = alunos;
     }
 
     public Long getId() {
@@ -100,5 +98,9 @@ public class Turma {
 
     public void setQuizzes(List<Quiz> quizzes) {
         this.quizzes = quizzes;
+    }
+
+    public TurmaDTO converter() {
+        return new TurmaDTO(this.id, this.nome, this.curso.getId(), this.turno.getId());
     }
 }

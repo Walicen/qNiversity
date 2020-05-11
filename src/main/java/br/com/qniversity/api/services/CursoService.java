@@ -10,6 +10,8 @@ public interface CursoService {
 
     Optional<Curso> findByNome(String nome);
 
+    Optional<Curso> findById(Long id);
+
     List<Curso> findAll();
 
     void save(Curso curso);
