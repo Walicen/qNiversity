@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 public class QuestaoDTO {
 
+    private Long id;
     private String descricao;
     private Nivel nivel;
     private List<RespostaDTO> respostas;
@@ -24,10 +25,19 @@ public class QuestaoDTO {
         this.nivel = nivel;
     }
 
-    public QuestaoDTO(String descricao, Nivel nivel, List<RespostaDTO> respostas) {
+    public QuestaoDTO(Long id, String descricao, Nivel nivel, List<RespostaDTO> respostas) {
+        this.id = id;
         this.descricao = descricao;
         this.nivel = nivel;
         this.respostas = respostas;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @NotNull

@@ -81,6 +81,6 @@ public class Questao {
 
     public static QuestaoDTO converter(Questao questao) {
         final List<RespostaDTO> respostaDTOS = questao.getRespostas().stream().map(Resposta::converter).collect(Collectors.toList());
-        return new QuestaoDTO(questao.getDescricao(), questao.getNivel(), respostaDTOS);
+        return new QuestaoDTO(questao.getId(), questao.getDescricao(), questao.getNivel(), respostaDTOS);
     }
 }

@@ -61,6 +61,6 @@ public class Resposta {
     }
 
     public static RespostaDTO converter(Resposta resposta) {
-        return new RespostaDTO(resposta.getDescricao(), resposta.isCorreta());
+        return new RespostaDTO(resposta.getId(), resposta.getDescricao(), resposta.isCorreta());
     }
 }
