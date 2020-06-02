@@ -1,8 +1,10 @@
 package br.com.qniversity.api.models.dtos;
 
 import br.com.qniversity.api.models.Quiz;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class QuizDTO {
@@ -10,6 +12,13 @@ public class QuizDTO {
     private String nome;
     private String descricao;
     private boolean ativo;
+
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime inicio;
+
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime fim;
+
     private List<Long> questoesIds;
 
     public QuizDTO(String nome, String descricao, boolean ativo) {
@@ -50,6 +59,22 @@ public class QuizDTO {
 
     public void setQuestoesIds(List<Long> questoesIds) {
         this.questoesIds = questoesIds;
+    }
+
+    public LocalDateTime getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(LocalDateTime inicio) {
+        this.inicio = inicio;
+    }
+
+    public LocalDateTime getFim() {
+        return fim;
+    }
+
+    public void setFim(LocalDateTime fim) {
+        this.fim = fim;
     }
 
     public Quiz converter() {

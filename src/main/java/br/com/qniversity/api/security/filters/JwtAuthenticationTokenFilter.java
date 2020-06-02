@@ -2,6 +2,7 @@ package br.com.qniversity.api.security.filters;
 
 import br.com.qniversity.api.security.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +21,8 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 	private static final String AUTH_HEADER = "Authorization";
 	private static final String BEARER_PREFIX = "Bearer ";
 
-	@Autowired
+    @Qualifier("jwtUserDetailsServiceImpl")
+    @Autowired
     private UserDetailsService userDetailsService;
 	
 	@Autowired

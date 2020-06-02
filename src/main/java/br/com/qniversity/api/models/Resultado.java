@@ -1,6 +1,7 @@
 package br.com.qniversity.api.models;
 
 import javax.persistence.*;
+import java.util.Calendar;
 
 @Entity
 public class Resultado {
@@ -10,6 +11,11 @@ public class Resultado {
     private Long id;
 
     private int qtdAcertos;
+
+    private int tentativa;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar dataCriacao;
 
     @ManyToOne
     @JoinColumn(name = "quiz_id")
@@ -49,5 +55,21 @@ public class Resultado {
 
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
+    }
+
+    public Calendar getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(Calendar dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public int getTentativa() {
+        return tentativa;
+    }
+
+    public void setTentativa(int tentativa) {
+        this.tentativa = tentativa;
     }
 }

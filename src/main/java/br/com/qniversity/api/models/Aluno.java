@@ -16,6 +16,7 @@ public class Aluno {
 
     @NotNull
     private String nome;
+
     @NotNull
     private String sobrenome;
 
@@ -24,7 +25,6 @@ public class Aluno {
     private String email;
 
     private String telefone;
-
 
     @JsonIgnore
     @ManyToOne()
@@ -36,7 +36,6 @@ public class Aluno {
     private Usuario usuario;
 
     private boolean ranking = false;
-
 
     public Aluno() {
     }

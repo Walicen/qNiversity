@@ -15,18 +15,18 @@ import java.util.Optional;
 @Service
 public class JwtUserDetailsServiceImpl implements UserDetailsService {
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<Usuario> user = userService.findByEmail(username);
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<Usuario> user = userService.findByEmail(username);
 
-		if (user.isPresent()) {
-			return JwtUserFactory.create(user.get());
-		}
+        if (user.isPresent()) {
+            return JwtUserFactory.create(user.get());
+        }
 
-		throw new UsernameNotFoundException("Email não encontrado.");
-	}
+        throw new UsernameNotFoundException("Email não encontrado.");
+    }
 
 }

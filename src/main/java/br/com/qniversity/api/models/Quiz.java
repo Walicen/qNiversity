@@ -3,7 +3,11 @@ package br.com.qniversity.api.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Quiz {
@@ -13,11 +17,11 @@ public class Quiz {
     private String nome;
     private String descricao;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Calendar inicio;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Calendar fim;
+    private LocalDateTime inicio;
+
+
+    private LocalDateTime fim;
 
     private boolean ativo;
 
@@ -90,19 +94,19 @@ public class Quiz {
         this.turmas = turmas;
     }
 
-    public Calendar getInicio() {
+    public LocalDateTime getInicio() {
         return inicio;
     }
 
-    public void setInicio(Calendar inicio) {
+    public void setInicio(LocalDateTime inicio) {
         this.inicio = inicio;
     }
 
-    public Calendar getFim() {
+    public LocalDateTime getFim() {
         return fim;
     }
 
-    public void setFim(Calendar fim) {
+    public void setFim(LocalDateTime fim) {
         this.fim = fim;
     }
 }
